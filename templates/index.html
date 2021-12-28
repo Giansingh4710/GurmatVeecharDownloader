@@ -7,21 +7,28 @@
     <title>Download</title>
   </head>
   <body>
-    <h1>Backend: {{content}}</h1>
-    {% for i in lst%}
-    <p>{{i}}</p>
-    {% endfor %}
-    <h1>Backend: {{content}}</h1>
-    <h1>Enter Link:</h1>
-    <form onsubmit="formSubmit(event)">
-      <input type="text" />
-      <input type="submit" />
+    <a href="https://gurmatveechar.com/audio.php?" target="blank"
+      >Copy the Link a Folder From Here</a
+    >
+    <form action="#" method="post">
+      <input
+        type="text"
+        id="theLink"
+        name="link"
+        value="http://sikhsoul.com/golden_khajana_files/mp3/Keertan/Bhai%20Mohinder%20Singh%20SDO/Naam%20Binaa%20Nahi.mp3"
+      />
+      <input type="submit" value="SUBMIT" />
     </form>
+
+    <!-- <a>
+      <button onclick="redirect()">Download a file</button>
+    </a> -->
   </body>
   <script>
     function formSubmit(e) {
       console.log("submit button clicked");
       e.preventDefault();
+      document.getElementById("theLink").value;
     }
   </script>
 </html>
