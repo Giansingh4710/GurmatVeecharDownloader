@@ -135,11 +135,14 @@ def download(khatas,thePath):
             print(f'{title} - {links[i]}')
 
 def enterUrl(link):
+    path="./audios"
+    if not os.path.isdir('./audios'):
+        os.mkdir("./audios")
+
     if notValid(link):
         return False
     start=str(dt.now())
     # path="C:/Users/gians/Desktop/CS/WebDev/sikhStuff/GurmatVeecharDownloader/audios"
-    path="./audios"
     if path[-1]!="/":
         path+="/"
 
