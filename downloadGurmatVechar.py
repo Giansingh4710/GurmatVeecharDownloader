@@ -16,6 +16,7 @@ def getAllLinks(url,folder):
     khatas=khatas[4:-2]
     folderWithLinks={folder:[]}
     count=0 
+    print(khatas)
     for file in khatas:
         try:
             title=file.find("font",size="2",color="0069c6").text
@@ -134,15 +135,21 @@ def download(khatas,thePath):
             print(f'{title} - {links[i]}')
 
 def enterUrl(link):
+    if notValid(link):
+        return False
     start=str(dt.now())
-
     # path="C:/Users/gians/Desktop/CS/WebDev/sikhStuff/GurmatVeecharDownloader/audios"
     path="./audios"
     if path[-1]!="/":
         path+="/"
 
-    khatas=getAllLinks(link,'main')
-    download(khatas,path)
+    try:
+        khatas=getAllLinks(link,'main')
+        print(khatas)
+        download(khatas,path)
+    except Exception as e:
+        print(e)
+        return False
 
     linkSplitLst=link.split('%2F')
     if len(linkSplitLst)==1:
@@ -165,6 +172,14 @@ def enterUrl(link):
     # print(f"Start: {start}")
     # print(f"End: {end}\n")
     print(f"Seconds: {endSeconds-startSeconds}")
+    return dirName # name of zip file
+
+def notValid(link):
+    if ".mp3" in link:
+        return True
+    if "https://gurmatveechar.com/audio.php" not in link:
+        return True
+    return False
 
 def deleteAllAudios(dirToDelAll="C:/Users/gians/Desktop/CS/WebDev/sikhStuff/GurmatVeecharDownloader/audios/"):
     for thing in os.listdir(dirToDelAll):

@@ -1,6 +1,7 @@
-from flask import Flask, redirect, url_for, render_template, send_file, request
+from flask import Flask, redirect, url_for, render_template, send_file, request,send_from_directory
 import requests
 from io import BytesIO
+from downloadGurmatVechar import enterUrl
 
 app=Flask(__name__)
 
@@ -10,7 +11,7 @@ def home():
 
 @app.route("/index", methods=["POST","GET"])
 def index():
-    print(request.method)
+    # print(request.method)
     if request.method=="POST":
         theLink=request.form["link"]
         theLink=theLink.replace("/","   ")
@@ -22,9 +23,11 @@ def index():
 @app.route("/download/<theLINK>")
 def download_file(theLINK):
     theLINK=theLINK.replace("   ","/")
-    return f"<h1>{theLINK}</h1>"
-    # r=requests.get(link)
-    # return send_file(BytesIO(r.content),attachment_filename="TEST.mp3", as_attachment=True)
+
+    zipPath=enterUrl(theLINK)
+    if zipPath==False:
+        return "<h1>Not good link</h1>"
+    return send_file(zipPath,download_name=zipPath, as_attachment=True)
 
 if __name__=="__main__":
     app.run(debug=True)

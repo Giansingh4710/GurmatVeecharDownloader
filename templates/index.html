@@ -1,34 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Download</title>
-  </head>
-  <body>
-    <a href="https://gurmatveechar.com/audio.php?" target="blank"
-      >Copy the Link a Folder From Here</a
-    >
-    <form action="#" method="post">
-      <input
-        type="text"
-        id="theLink"
-        name="link"
-        value="http://sikhsoul.com/golden_khajana_files/mp3/Keertan/Bhai%20Mohinder%20Singh%20SDO/Naam%20Binaa%20Nahi.mp3"
-      />
-      <input type="submit" value="SUBMIT" />
-    </form>
-
-    <!-- <a>
-      <button onclick="redirect()">Download a file</button>
-    </a> -->
-  </body>
-  <script>
-    function formSubmit(e) {
-      console.log("submit button clicked");
-      e.preventDefault();
-      document.getElementById("theLink").value;
-    }
-  </script>
-</html>
+{% extends 'nav.html' %} {% block headtitle %} Gurmat Veechar Downloader {%
+endblock %} {% block body %}
+<a href="https://gurmatveechar.com/audio.php?" target="blank"
+  >Copy the Link a Folder From Here</a
+>
+<form action="#" method="post">
+  <div class="mb-3">
+    <label class="form-label" for="link">Enter Link:</label>
+    <input
+      class="form-control"
+      type="text"
+      name="link"
+      value="https://gurmatveechar.com/audio.php?q=f&f=%2FGurbani_Ucharan%2FGiani_Sant_Singh_Maskeen"
+    />
+  </div>
+  <input type="submit" value="SUBMIT" />
+</form>
+{% endblock %}
