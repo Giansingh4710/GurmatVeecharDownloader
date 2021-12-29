@@ -1,4 +1,4 @@
-1)heroku logs --tail
+1)randoms- heroku logs --tail , heroku restart
 
 2) generate requirenments: pip freeze > requirements.txt
 
