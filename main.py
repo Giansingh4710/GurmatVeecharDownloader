@@ -1,6 +1,4 @@
 from flask import Flask, redirect, url_for, render_template, send_file, request,send_from_directory
-import requests
-from io import BytesIO
 from downloadGurmatVechar import enterUrl
 import os
 app=Flask(__name__)
@@ -36,4 +34,5 @@ def removeAllZips():
         if ".zip" in thing:
             os.remove(thing)
 if __name__=="__main__":
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run()

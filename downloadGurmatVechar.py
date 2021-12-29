@@ -16,12 +16,11 @@ def getAllLinks(url,folder):
     khatas=khatas[4:-2]
     folderWithLinks={folder:[]}
     count=0 
-    print(khatas)
     for file in khatas:
         try:
             title=file.find("font",size="2",color="0069c6").text
         except AttributeError:
-            print("No Good. But we caught it!!")#It got the ALL the text from the drop down menu and those don't have a 'color=0069c6' attribute
+            # print("No Good. But we caught it!!")#It got the ALL the text from the drop down menu and those don't have a 'color=0069c6' attribute
             continue
         newUrl="http://www.gurmatveechar.com/"+file.find("a").get("href")
         if "mp3" in newUrl.lower():
@@ -148,7 +147,6 @@ def enterUrl(link):
 
     try:
         khatas=getAllLinks(link,'main')
-        print(khatas)
         download(khatas,path)
     except Exception as e:
         print(e)

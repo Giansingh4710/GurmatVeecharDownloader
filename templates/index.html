@@ -3,7 +3,7 @@ endblock %} {% block body %}
 <a href="https://gurmatveechar.com/audio.php?" target="blank"
   >Copy the Link a Folder From Here</a
 >
-<form action="#" method="post">
+<form action="#" method="post" id="form" onsubmit="formSubmit(event)">
   <div class="mb-3">
     <label class="form-label" for="link">Enter Link:</label>
     <input
@@ -13,6 +13,22 @@ endblock %} {% block body %}
       value="https://gurmatveechar.com/audio.php?q=f&f=%2FGurbani_Ucharan%2FGiani_Sant_Singh_Maskeen"
     />
   </div>
-  <input type="submit" value="SUBMIT" />
+  <input type="submit" value="SUBMIT" id="submitBtn" />
 </form>
+<script>
+  const form = document.getElementById("form");
+  const btn = document.getElementById("submitBtn");
+  const msg = document.createElement("p");
+  msg.innerText =
+    "Your Audios are downloading...\nPlease wait. It may take a while. Maybe an hour or 2. All depends on the sizes of the files in the link.";
+
+  function formSubmit(e) {
+    btn.hidden = true;
+    form.appendChild(msg);
+  }
+  btn.hidden = false;
+  if (form.lastElementChild === msg) {
+    form.removeChild(form.lastElementChild);
+  }
+</script>
 {% endblock %}
