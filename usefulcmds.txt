@@ -1,0 +1,5 @@
+1)heroku logs --tail
+
+2) generate requirenments: pip freeze > requirements.txt
+
+3) push to heroku- git push heroku main(branchname which is mostly main)
