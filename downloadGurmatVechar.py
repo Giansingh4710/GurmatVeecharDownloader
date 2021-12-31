@@ -97,7 +97,7 @@ def enterUrl(link,dirName):
         if notValid(link):
             raise Exception("NotValid Link")
 
-        path="audios/"+dirName
+        path="./audios/"+dirName+"/"
         os.mkdir(path)
         if path[-1]!="/":
             path+="/"
