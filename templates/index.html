@@ -1,5 +1,23 @@
 {% extends 'nav.html' %} {% block headtitle %} Gurmat Veechar Downloader {%
 endblock %} {% block body %}
+<h1>
+  This site will download all files from a specific link of
+  <a href="https://gurmatveechar.com/audio.php?" target="blank">
+    gurmatveechar.com </a
+  >. For example, if you want to download ALL kathas of Sant Giani Gurbachan
+  Singh Ji Bhinderawale, you would go to this
+  <a
+    href="https://gurmatveechar.com/audio.php?q=f&f=%2FKatha%2F01_Puratan_Katha%2FSant_Gurbachan_Singh_%28Bhindran_wale%29"
+    target="blank"
+  >
+    link </a
+  >, copy it and paste it in the box below, and press submit. It will the start
+  downlading the kathas for you.
+</h1>
+<p>
+  (Since Sant Ji has A LOT of katha, it may take a while to download their
+  kathas. The time of download all depends on the size of the files)
+</p>
 <a href="https://gurmatveechar.com/audio.php?" target="blank"
   >Copy the Link a Folder From Here</a
 >
@@ -20,7 +38,7 @@ endblock %} {% block body %}
   const btn = document.getElementById("submitBtn");
   const msg = document.createElement("p");
   msg.innerText =
-    "Your Audios are downloading...\nPlease wait. It may take a while. Maybe an hour or 2. All depends on the sizes of the files in the link.";
+    "Your Audios are downloading...\nPlease wait. All depends on the sizes of the files in the link.";
 
   function formSubmit(e) {
     btn.hidden = true;
