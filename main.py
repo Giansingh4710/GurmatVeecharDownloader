@@ -14,7 +14,7 @@ def index():
         theLink=theLink.replace("/","   ")
         return redirect(url_for("download_file", theLINK=theLink))
     else:    
-        return render_template("index.html")
+        return render_template("index.html",cwd=str(os.getcwd()),lst=str(os.listdir()))
 
 id=0
 @app.route("/download/<theLINK>")
