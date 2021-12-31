@@ -46,5 +46,5 @@ def removeAllZips():
         if ".zip" in thing:
             os.remove(thing)
 if __name__=="__main__":
-    app.run(debug=True)
-    # app.run()
+    # app.run(debug=True)
+    app.run()
