@@ -28,8 +28,10 @@ def download_file(theLINK):
     if len(linkSplitLst)==1:
         linkSplitLst=theLINK.split('/')
     dirName=linkSplitLst[-1].lower()+str(id) #using id to aviod collisions if same link files are being downloaded
-    
-    os.mkdir("audios/"+dirName)
+    print(os.getcwd())
+    os.chdir("./audios")
+    os.mkdir(dirName)
+    os.chdir("../")
     zipPath=dirName+".zip"
 
     res=enterUrl(theLINK,dirName)
@@ -46,5 +48,5 @@ def removeAllZips():
         if ".zip" in thing:
             os.remove(thing)
 if __name__=="__main__":
-    # app.run(debug=True)
-    app.run()
+    app.run(debug=True)
+    # app.run()
