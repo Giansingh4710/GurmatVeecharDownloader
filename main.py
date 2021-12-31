@@ -14,7 +14,7 @@ def index():
         theLink=theLink.replace("/","   ")
         return redirect(url_for("download_file", theLINK=theLink))
     else:    
-        return render_template("index.html",cwd=str(os.getcwd()),lst=str(os.listdir()))
+        return render_template("index.html")
 
 id=0
 @app.route("/download/<theLINK>")
@@ -28,12 +28,10 @@ def download_file(theLINK):
     if len(linkSplitLst)==1:
         linkSplitLst=theLINK.split('/')
     dirName=linkSplitLst[-1]+str(id) #using id to aviod collisions if same link files are being downloaded
-
-    enterUrl(theLINK,dirName)
-    # try:
-        # enterUrl(theLINK,dirName)
-    # except Exception as e:
-        # return f"<h1>{e}</h1>"
+    try:
+        enterUrl(theLINK,dirName)
+    except Exception as e:
+        return f"<h1>{e}</h1>"
     
     zipPath=dirName+".zip"
     return send_file(zipPath,download_name=zipPath, as_attachment=True)
@@ -45,5 +43,5 @@ def removeAllZips():
         if ".zip" in thing:
             os.remove(thing)
 if __name__=="__main__":
-    app.run(debug=True)
-    # app.run()
+    # app.run(debug=True)
+    app.run()

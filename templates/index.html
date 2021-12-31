@@ -21,7 +21,7 @@ endblock %} {% block body %}
 <a href="https://gurmatveechar.com/audio.php?" target="blank"
   >Copy the Link a Folder From Here</a
 >
-<form action="#" method="post" id="form" onsubmit="formSubmit(event)">
+<form action="#" method="post" id="form" onsubmit="hideSbtBtn()">
   <div class="mb-3">
     <label class="form-label" for="link">Enter Link:</label>
     <input
@@ -33,21 +33,23 @@ endblock %} {% block body %}
   </div>
   <input type="submit" value="SUBMIT" id="submitBtn" />
 </form>
-HI {{lst}} {{cwd}}
 <script>
   const form = document.getElementById("form");
   const btn = document.getElementById("submitBtn");
+  btn.hidden = false;
   const msg = document.createElement("p");
   msg.innerText =
     "Your Audios are downloading...\nPlease wait. All depends on the sizes of the files in the link.";
 
-  function formSubmit(e) {
+  function hideSbtBtn() {
     btn.hidden = true;
     form.appendChild(msg);
   }
-  btn.hidden = false;
-  if (form.lastElementChild === msg) {
-    form.removeChild(form.lastElementChild);
+  function showSbtBtn() {
+    if (form.lastElementChild === msg) {
+      btn.hidden = false;
+      form.removeChild(form.lastElementChild);
+    }
   }
 </script>
 {% endblock %}
