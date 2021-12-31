@@ -92,35 +92,35 @@ def download(khatas,thePath):
             # print(f'{title} - {links[i]}')
 
 def enterUrl(link,dirName):
-    path="audios/"+dirName
-    os.mkdir(path)
-    if path[-1]!="/":
-        path+="/"
-
-    if notValid(link):
-        return False
-
-    start=str(dt.now())
     try:
+
+        if notValid(link):
+            raise Exception("NotValid Link")
+
+        path="audios/"+dirName
+        os.mkdir(path)
+        if path[-1]!="/":
+            path+="/"
+        # start=str(dt.now())
         khatas=getAllLinks(link,'main')
         download(khatas,path)
+
+        zipAudios(dirName)
+        deleteAllAudios("audios/"+dirName)
+
+        # end=str(dt.now())
+
+        # startSeconds=(int(start[11:13])*60*60)+(int(start[14:16])*60)+int(start[17:19])
+        # endSeconds=(int(end[11:13])*60*60)+(int(end[14:16])*60)+int(end[17:19])
+
+        # print(f"\nTotal MBs: {allMbSum}")
+        # print(f"Total MBs per Second :{allMbSum/(endSeconds-startSeconds)}")
+        # print("In total: "+str(totalFiles)+" total files\n")
+        # print(f"Seconds: {endSeconds-startSeconds}")
+        return True # name of zip file
     except Exception as e:
         print(e)
-        return False
-
-    zipAudios(dirName)
-    deleteAllAudios("audios/"+dirName)
-
-    end=str(dt.now())
-
-    startSeconds=(int(start[11:13])*60*60)+(int(start[14:16])*60)+int(start[17:19])
-    endSeconds=(int(end[11:13])*60*60)+(int(end[14:16])*60)+int(end[17:19])
-
-    # print(f"\nTotal MBs: {allMbSum}")
-    # print(f"Total MBs per Second :{allMbSum/(endSeconds-startSeconds)}")
-    # print("In total: "+str(totalFiles)+" total files\n")
-    # print(f"Seconds: {endSeconds-startSeconds}")
-    return True # name of zip file
+        return e
 
 def notValid(link):
     if ".mp3" in link:

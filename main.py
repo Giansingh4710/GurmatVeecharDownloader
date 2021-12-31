@@ -1,8 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, send_file, request,send_from_directory
 from downloadGurmatVechar import enterUrl
 import os
-from zipfile import ZipFile
-
 app=Flask(__name__)
 
 @app.route("/")
@@ -34,8 +32,8 @@ def download_file(theLINK):
         
     res=enterUrl(theLINK,dirName)
 
-    if res==False:
-        return "<h1>Not good link</h1>"
+    if res!=True:
+        return f"<h1>{res}</h1>"
     
     return send_file(zipPath,download_name=zipPath, as_attachment=True)
 
