@@ -22,8 +22,8 @@ class ZipUtilities:
 
 def zipAudios(filename):
     utilities = ZipUtilities()
-    # filename = 'audios.zip'
-    directory = 'audios'
+    directory = "audios/"+filename
+    filename+='.zip'
     utilities.toZip(directory, filename)
 
 # zipAudios('boby.zip')

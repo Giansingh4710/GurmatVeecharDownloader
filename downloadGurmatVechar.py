@@ -91,34 +91,25 @@ def download(khatas,thePath):
             urllib.request.urlretrieve(links[i],f'{folderPath}{title}')
             print(f'{title} - {links[i]}')
 
-def enterUrl(link):
-    path="./audios"
-    if not os.path.isdir('./audios'):
-        os.mkdir("./audios")
-
-    if notValid(link):
-        return False
-    start=str(dt.now())
-    # path="C:/Users/gians/Desktop/CS/WebDev/sikhStuff/GurmatVeecharDownloader/audios"
+def enterUrl(link,dirName):
+    path="audios/"+dirName
+    os.mkdir(path)
     if path[-1]!="/":
         path+="/"
 
+    if notValid(link):
+        return False
+
+    start=str(dt.now())
     try:
         khatas=getAllLinks(link,'main')
-        print(khatas)
         download(khatas,path)
     except Exception as e:
         print(e)
         return False
 
-    linkSplitLst=link.split('%2F')
-    if len(linkSplitLst)==1:
-        linkSplitLst=link.split('/')
-    dirName=linkSplitLst[-1]+".zip"
-
     zipAudios(dirName)
-
-    deleteAllAudios()
+    deleteAllAudios("audios/"+dirName)
 
     end=str(dt.now())
 
@@ -128,11 +119,8 @@ def enterUrl(link):
     print(f"\nTotal MBs: {allMbSum}")
     print(f"Total MBs per Second :{allMbSum/(endSeconds-startSeconds)}")
     print("In total: "+str(totalFiles)+" total files\n")
-    
-    # print(f"Start: {start}")
-    # print(f"End: {end}\n")
     print(f"Seconds: {endSeconds-startSeconds}")
-    return dirName # name of zip file
+    return True # name of zip file
 
 def notValid(link):
     if ".mp3" in link:
@@ -141,14 +129,17 @@ def notValid(link):
         return True
     return False
 
-def deleteAllAudios(dirToDelAll="./audios/"):
+def deleteAllAudios(dirToDelAll):
+    #this is self destruction. the folder that is provided will also be destoryed
+    if dirToDelAll[-1]!="/":
+        dirToDelAll+="/"
     for thing in os.listdir(dirToDelAll):
         path=dirToDelAll+thing
         if os.path.isdir(path):
             deleteAllAudios(path+"/")
-            os.rmdir(path)
         else:
             os.remove(path)
+    os.rmdir(dirToDelAll)
                      
 
 

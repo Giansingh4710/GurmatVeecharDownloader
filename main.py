@@ -1,11 +1,12 @@
 from flask import Flask, redirect, url_for, render_template, send_file, request,send_from_directory
 from downloadGurmatVechar import enterUrl
 import os
+from zipfile import ZipFile
+
 app=Flask(__name__)
 
 @app.route("/")
 def home():
-    removeAllZips()
     return redirect(url_for('index'))
 
 @app.route("/index", methods=["POST","GET"])
@@ -18,15 +19,27 @@ def index():
     else:    
         return render_template("index.html")
 
+id=0
 @app.route("/download/<theLINK>")
 def download_file(theLINK):
     removeAllZips()
+    global id
+    id+=1
     theLINK=theLINK.replace("   ","/")
 
-    zipPath=enterUrl(theLINK)
-    if zipPath==False:
+    linkSplitLst=theLINK.split('%2F')
+    if len(linkSplitLst)==1:
+        linkSplitLst=theLINK.split('/')
+    dirName=linkSplitLst[-1]+str(id) #using id to aviod collisions if same link files are being downloaded
+    zipPath=dirName+".zip"
+        
+    res=enterUrl(theLINK,dirName)
+
+    if res==False:
         return "<h1>Not good link</h1>"
+    
     return send_file(zipPath,download_name=zipPath, as_attachment=True)
+
 
 
 def removeAllZips():
