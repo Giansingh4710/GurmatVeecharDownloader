@@ -14,7 +14,6 @@ def index():
     if request.method=="POST":
         theLink=request.form["link"]
         theLink=theLink.replace("/","   ")
-        print("The Link: "+str(theLink))
         return redirect(url_for("download_file", theLINK=theLink))
     else:    
         return render_template("index.html")
@@ -47,5 +46,5 @@ def removeAllZips():
         if ".zip" in thing:
             os.remove(thing)
 if __name__=="__main__":
-    app.run(debug=True)
-    # app.run()
+    # app.run(debug=True)
+    app.run()

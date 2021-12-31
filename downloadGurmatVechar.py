@@ -89,7 +89,7 @@ def download(khatas,thePath):
                 if bad in title:
                     title=title.replace(bad,"#")
             urllib.request.urlretrieve(links[i],f'{folderPath}{title}')
-            print(f'{title} - {links[i]}')
+            # print(f'{title} - {links[i]}')
 
 def enterUrl(link,dirName):
     path="audios/"+dirName
@@ -116,10 +116,10 @@ def enterUrl(link,dirName):
     startSeconds=(int(start[11:13])*60*60)+(int(start[14:16])*60)+int(start[17:19])
     endSeconds=(int(end[11:13])*60*60)+(int(end[14:16])*60)+int(end[17:19])
 
-    print(f"\nTotal MBs: {allMbSum}")
-    print(f"Total MBs per Second :{allMbSum/(endSeconds-startSeconds)}")
-    print("In total: "+str(totalFiles)+" total files\n")
-    print(f"Seconds: {endSeconds-startSeconds}")
+    # print(f"\nTotal MBs: {allMbSum}")
+    # print(f"Total MBs per Second :{allMbSum/(endSeconds-startSeconds)}")
+    # print("In total: "+str(totalFiles)+" total files\n")
+    # print(f"Seconds: {endSeconds-startSeconds}")
     return True # name of zip file
 
 def notValid(link):
