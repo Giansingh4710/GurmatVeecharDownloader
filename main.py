@@ -27,7 +27,7 @@ def download_file(theLINK):
     linkSplitLst=theLINK.split('%2F')
     if len(linkSplitLst)==1:
         linkSplitLst=theLINK.split('/')
-    dirName=linkSplitLst[-1]+str(id) #using id to aviod collisions if same link files are being downloaded
+    dirName=linkSplitLst[-1].lower()+str(id) #using id to aviod collisions if same link files are being downloaded
     
     os.mkdir("audios/"+dirName)
     zipPath=dirName+".zip"
