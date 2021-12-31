@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, send_file, request,send_from_directory
-from downloadGurmatVechar import enterUrl
+from downloadGurmatVechar import enterUrl , deleteAllAudios
 import os
 app=Flask(__name__)
 
@@ -28,10 +28,12 @@ def download_file(theLINK):
     if len(linkSplitLst)==1:
         linkSplitLst=theLINK.split('/')
     dirName=linkSplitLst[-1]+str(id) #using id to aviod collisions if same link files are being downloaded
+    
+    os.mkdir("audios/"+dirName)
     zipPath=dirName+".zip"
-        
-    res=enterUrl(theLINK,dirName)
 
+    res=enterUrl(theLINK,dirName)
+    deleteAllAudios("audios/"+dirName)
     if res!=True:
         return f"<h1>{res}</h1>"
     
@@ -44,5 +46,5 @@ def removeAllZips():
         if ".zip" in thing:
             os.remove(thing)
 if __name__=="__main__":
-    # app.run(debug=True)
-    app.run()
+    app.run(debug=True)
+    # app.run()

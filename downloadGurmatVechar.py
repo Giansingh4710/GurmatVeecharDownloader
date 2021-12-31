@@ -97,8 +97,7 @@ def enterUrl(link,dirName):
         if notValid(link):
             raise Exception("NotValid Link")
 
-        path="./audios/"+dirName+"/"
-        os.mkdir(path)
+        path="audios/"+dirName+"/"
         if path[-1]!="/":
             path+="/"
         # start=str(dt.now())
@@ -106,8 +105,6 @@ def enterUrl(link,dirName):
         download(khatas,path)
 
         zipAudios(dirName)
-        deleteAllAudios("audios/"+dirName)
-
         # end=str(dt.now())
 
         # startSeconds=(int(start[11:13])*60*60)+(int(start[14:16])*60)+int(start[17:19])
